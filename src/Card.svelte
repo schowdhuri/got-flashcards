@@ -9,6 +9,7 @@
   function flip() {
     isRevealed.set(!$isRevealed);
   }
+  
 </script>
 
 <style>
@@ -16,7 +17,7 @@
     display: none;
   }
   .card {
-    background: #404044 url(/parchment.jpg) center no-repeat;
+    background: #404044 url(../parchment.jpg) center no-repeat;
     background-size: cover;
     position: relative;
   }

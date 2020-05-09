@@ -4,7 +4,7 @@
 
 <style>
   main {
-    background: #000 url("/got-bg.jpg") center no-repeat;
+    background: #000 url("../got-bg.jpg") center no-repeat;
     background-size: cover;
     min-height: 100vh;
   }

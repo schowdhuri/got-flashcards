@@ -5,17 +5,17 @@
   import characters from "./constants/images.json";
 
   const getRand = () => Math.floor(Math.random() * characters.length);
-  const MAX = 5;
-  const list = [];
+  const MAX = 10;
+  const deck = [];
   let i = 1;
   let idx;
   while (true) {
     let idx = getRand();
-    while (list.find(charac => charac.name === characters[idx].name)) {
+    while (deck.find(charac => charac.name === characters[idx].name)) {
       idx = getRand();
     }
-    list.push(characters[idx]);
-    if (list.length === MAX) {
+    deck.push(characters[idx]);
+    if (deck.length === MAX) {
       break;
     }
   }
@@ -24,7 +24,7 @@
     if (cur > 0) cur -= 1;
   }
   function next() {
-    if (cur < characters.length - 1) cur += 1;
+    if (cur < deck.length - 1) cur += 1;
   }
   
   onMount(() => {
@@ -57,11 +57,11 @@
 
 <div class="wrapper">
 <div class="deck">
-  {#each characters as chr, num}
+  {#each deck as chr, num}
     <Card
       visible={num === cur}
       name={chr.name}
-      image={`/images/${chr.image}`} />
+      image={`./images/${chr.image}`} />
   {/each}
   
   <ul class="pagination">
@@ -70,8 +70,8 @@
         <i class="material-icons">chevron_left</i>
       </a>
     </li>
-    <li>{cur + 1} of {characters.length}</li>
-    <li class:disabled={cur >= characters.length} class="waves-effect" on:click={next}>
+    <li>{cur + 1} of {deck.length}</li>
+    <li class:disabled={cur >= deck.length} class="waves-effect" on:click={next}>
       <a href="#!">
         <i class="material-icons">chevron_right</i>
       </a>
