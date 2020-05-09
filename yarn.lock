@@ -246,6 +246,11 @@ glob-parent@~5.1.0:
   dependencies:
     is-glob "^4.0.1"
 
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
+
 has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
@@ -396,6 +401,13 @@ resolve@^1.11.0, resolve@^1.14.2:
   dependencies:
     path-parse "^1.0.6"
 
+rollup-plugin-css-only@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-css-only/-/rollup-plugin-css-only-2.0.0.tgz#696a0d0bc8072f3cb67eb830ebb579e3bad7ecf6"
+  integrity sha512-RdzeDgrKHrvixVF001fbK/G1C6wZYSs49lBon4dqeW4awgVhPWaaogXtVnVUBbtIeAF5kxaZQI1tJ+UYL0nswg==
+  dependencies:
+    rollup-pluginutils "^2.3.3"
+
 rollup-plugin-livereload@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-livereload/-/rollup-plugin-livereload-1.3.0.tgz#8da90df13df6502b9d982997d6ac871092f15fdd"
@@ -423,7 +435,7 @@ rollup-plugin-terser@^5.1.2:
     serialize-javascript "^2.1.2"
     terser "^4.6.2"
 
-rollup-pluginutils@^2.8.2:
+rollup-pluginutils@^2.3.3, rollup-pluginutils@^2.8.2:
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.8.2.tgz#72f2af0748b592364dbd3389e600e5a9444a351e"
   integrity sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==

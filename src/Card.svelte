@@ -1,5 +1,5 @@
 <script>
-  import { writable } from 'svelte/store';
+  import { writable } from "svelte/store";
   export let image;
   export let name;
   export let visible;
@@ -12,28 +12,49 @@
 </script>
 
 <style>
-  .card {
-    align-items: center;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px #444;
-    display: flex;
-    height: 70vh;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 90vw;
-  }
-  .card.hidden {
+  .hidden {
     display: none;
   }
-  .card img {
-    max-height: 100%;
-    max-width: 100%;
+  .card {
+    background: #404044 url(/parchment.jpg) center no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .hotspot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  .card-image {
+    display: flex;
+  }
+  .card-image img {
+    border-radius: 2px;
+    max-height: 70vh;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  .card .card-reveal {
+    height: auto;
   }
 </style>
 
-<section class="card" class:hidden={!visible} on:click={flip}>
-  <img src={image} alt="" />
-  {#if $isRevealed}
-    <h2>{name}</h2>
-  {/if}
-</section>
+<div class="row" class:hidden={!visible} on:click={flip}>
+  <div class="col s12 m12">
+    <div class="card">
+      <div class="hotspot activator" />
+      <div class="card-image">
+        <img class="activator" src={image} alt="" />
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">
+          {name}
+          <i class="material-icons right">close</i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

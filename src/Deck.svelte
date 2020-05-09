@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from "svelte";
+  import Hammer from "hammerjs";
   import Card from "./Card.svelte";
   import characters from "./constants/images.json";
 
@@ -7,42 +9,73 @@
   const list = [];
   let i = 1;
   let idx;
-  while(true) {
+  while (true) {
     let idx = getRand();
-    while(list.find(charac => charac.name === characters[idx].name)) {
+    while (list.find(charac => charac.name === characters[idx].name)) {
       idx = getRand();
     }
     list.push(characters[idx]);
-    if(list.length === MAX) {
+    if (list.length === MAX) {
       break;
     }
   }
-  let cur = 1;
+  let cur = 0;
   function prev() {
-    if(cur > 0)
-      cur -= 1;
+    if (cur > 0) cur -= 1;
   }
   function next() {
-    if(cur < characters.length - 1)
-      cur += 1;
+    if (cur < characters.length - 1) cur += 1;
   }
   
+  onMount(() => {
+    const hammertime = new Hammer(document.querySelector(".deck"));
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+    hammertime.on("swipeleft", next);
+    hammertime.on("swiperight", prev);
+  });
 </script>
 
 <style>
-  .score {
-    margin: 2rem 0;
-    text-align: center
+  .wrapper {
+    align-items: center;
+    display: grid;
+    height: calc(100vh - 5rem);
+  }
+  .pagination {
+    color: #f2f2f2;
+    line-height: 2em;
+    margin: 2rem auto;
+    text-align: center;
+  }
+  .material-icons {
+    color: #f2f2f2;
+  }
+  .disabled .material-icons {
+    color: #999;
   }
 </style>
 
-<div>
+<div class="wrapper">
+<div class="deck">
   {#each characters as chr, num}
-    <Card visible={num===cur} name={chr.name} image={`/images/${chr.image}`} />
+    <Card
+      visible={num === cur}
+      name={chr.name}
+      image={`/images/${chr.image}`} />
   {/each}
-  <div class="score">
-    {cur} of {characters.length}
-  </div>
-  <button on:click={prev}>Prev</button>
-  <button on:click={next}>Next</button>
+  
+  <ul class="pagination">
+    <li class:disabled={cur < 1} class="waves-effect" on:click={prev}>
+      <a href="#!">
+        <i class="material-icons">chevron_left</i>
+      </a>
+    </li>
+    <li>{cur + 1} of {characters.length}</li>
+    <li class:disabled={cur >= characters.length} class="waves-effect" on:click={next}>
+      <a href="#!">
+        <i class="material-icons">chevron_right</i>
+      </a>
+    </li>
+  </ul>
+</div>
 </div>
